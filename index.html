@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>Super-Cool Slideshow</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script type="application/javascript">
+//<![CDATA[
+
+function imageOn(imageName, message) { //this function is what is going to be called
+//when the mouse is hovered over a link.  This function passes arguments that
+//get the image's name, and gets a message to display.
+	
+	imgHolder = document.getElementById("holder"); //this variable sets the default
+	//placeholder image.
+	imgHolder.src = imageName; //this statement will grab the new image specified
+	//in the argument imageName, and will change the picture said image.
+
+	var p = document.getElementById("text"); //variable p just gets the 
+	//contents of ID test; in this case "Choose an image.".
+	
+	     for(var i=0; i < p.childNodes.length; i++) {
+	       if (p.childNodes[i].nodeType == 3) { // this statement gets all the childNodes
+		   //of variable p (cycles 1 more each time thanks to the for loop), if the
+		   //nodeTypes == 3 (text nodes), then that said childNode will change the 
+		   //text value from the "Choose an image." to whatever is passed via the
+		   //message argument.
+		p.childNodes[i].nodeValue = message;
+		break;
+		}
+	     }
+	
+	
+		
+	
+}
+
+function imageOff() { //this function will be called when the mouse is no longer
+//hovered over the link.
+	
+	imgHolder = document.getElementById("holder");
+	imgHolder.src = "placeholder.jpg";
+	var p = document.getElementById("text");
+	
+	     for(var i=0; i < p.childNodes.length; i++) {
+	       if (p.childNodes[i].nodeType == 3) {
+		   //this loop is exactly as the same above, except it will revert the message 
+		   //argument when the mouse hovers off of the link, and
+		   //change it back to it's default, which is "Choose an image.".
+		p.childNodes[i].nodeValue = "Choose an image.";
+		break;
+		}
+	     }
+}
+
+
+// ]]>
+</script>
+ </head>
+
+<body>
+<h1>Images</h1>
+<div id="links">
+<a id = "link1" href="#" onmouseover="imageOn('wwlink.jpg', 'This is Wind Waker Link')" onmouseout="imageOff()">Picture 1</a>
+<a id = "link2" href="#" onmouseover="imageOn('wwzelda.jpg', 'This is Wind Waker Zelda')" onmouseout="imageOff()">Picture 2</a>
+<a id = "link3" href="#" onmouseover="imageOn('ootlink.jpg', 'This is Ocarina of Time Link')" onmouseout="imageOff()">Picture 3</a>
+<a id = "link4" href="#" onmouseover="imageOn('ootzelda.png', 'This is Ocarina of Time Zelda')" onmouseout="imageOff()">Picture 4</a>
+</div>
+<div id="container">
+<img id="holder" width="720" height="500" alt="" src="placeholder.jpg"/>
+</div>	
+<p id ="text">Choose an image.</p>
+
+
+</body>
+</html>
